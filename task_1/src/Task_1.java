@@ -3,14 +3,23 @@ public class Task_1 implements Task_1_base {
     public int subtask_1_if(int first, int second, int third) {
         // Вычислить и вернуть минимальный из трех полученных аргументов (first, second, third)
         // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        int min = first;
+        if (min > second)
+            min = second;
+        if (min > third)
+            min = third;
+        return min;
     }
     @Override
     public boolean subtask_2_if(int year) {
         // Проверить, является ли год, переданный в параметре year, високосным.
         // Високосный год - это год, кратный четырем, но не кратный 100, либо кратный 400
         // ------------------------------------------------------------------------------------
-        return false; // Замените данный оператор кодом, решающим поставленную задачу.
+        if (year < 0)
+        {
+            return false;
+        }
+        return ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0);
     }
     @Override
     public int subtask_3_if(double x, double y, double left_up_x, double left_up_y, double width, double height) {
@@ -24,7 +33,21 @@ public class Task_1 implements Task_1_base {
         // 2 - аргументы функции заданы некорректно
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        if (Math.abs(0 - width) < 0.000001 || Math.abs(0 - height) < 0.000001)
+            return 2;
+        if(width < 0 || height < 0)
+            return 2;
+        //double right_side_x = left_up_x + width;
+        double bottom_side_y = left_up_y - height;
+        if (left_up_x + width - x < 0 || x - left_up_x < 0)
+            return 0;
+        if(y - bottom_side_y < 0 || left_up_y - y < 0)
+            return 0;
+        if (Math.abs(width - x) < 0.000001 || Math.abs(x - left_up_x) < 0.000001)
+            return 0;
+        if(Math.abs(y - bottom_side_y) < 0.000001 || Math.abs(left_up_y - y) < 0.000001)
+            return 0;
+        return 1; // Замените данный оператор кодом, решающим поставленную задачу.
     }
     @Override
     public int subtask_4_if(double x0, double y0, double k, double b) {
@@ -36,7 +59,14 @@ public class Task_1 implements Task_1_base {
         // 2 - лежит на прямой
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        double x0_on_line_y = k*x0 + b;
+        if (Math.abs(x0_on_line_y - y0) < 0.000001)
+            return 2;
+        if (x0_on_line_y - y0 < 0)
+            return 0;
+        if (x0_on_line_y - y0 > 0)
+            return 1;
+        return -1; // Замените данный оператор кодом, решающим поставленную задачу.
     }
     @Override
     public String subtask_5_switch(int day_od_week) {
@@ -44,7 +74,32 @@ public class Task_1 implements Task_1_base {
         // с большой буквы. Дни едели отсчитываются с единицы. Если номер задан некорректно,
         // вернуть строку "Ошибка"
         // ------------------------------------------------------------------------------------
-        return ""; // Замените данный оператор кодом, решающим поставленную задачу.
+        switch (day_od_week)
+        {
+            case 1:
+                return "Понедельник";
+
+            case 2:
+                return "Вторник";
+
+            case 3:
+                return "Среда";
+
+            case 4:
+                return "Четверг";
+
+            case 5:
+                return "Пятница";
+
+            case 6:
+                return "Суббота";
+
+            case 7:
+                return "Воскресенье";
+
+            default:
+                return "Ошибка";
+        }
     }
     @Override
     public String subtask_6_switch(int direction) {
@@ -55,7 +110,23 @@ public class Task_1 implements Task_1_base {
         // 4 - восток
         // Во всех остальных случаях вернуть пустую строку
         // ------------------------------------------------------------------------------------
-        return ""; // Замените данный оператор кодом, решающим поставленную задачу.
+        switch (direction)
+        {
+            case 1:
+                return "север";
+
+            case 2:
+                return "юг";
+
+            case 3:
+                return "запад";
+
+            case 4:
+                return "восток";
+
+            default:
+                return "";
+        }
     }
     @Override
     public int subtask_7_if(double vx, double vy, double vz, double speed, double time, double wall) {
@@ -67,17 +138,29 @@ public class Task_1 implements Task_1_base {
         // 2 - аргументы функции заданы некорректно
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        if (time < 0 || speed < 0)
+            return 2;
+        double all_path =  speed * time;    // !! скорость может быть отрицательной
+        all_path *= vx;
+        if(Math.abs(all_path - wall) < 0.000001)
+            return 1;
+        return 0;
     }
     @Override
     public int subtask_8_if(double k1, double b1, double k2, double b2) {
         // Проверить, как друг относительно друга располагаются прямые y = k1*x + b1 и
         // y = k2*x + b2. Вернуть
-        // 1 - если параллельны
-        // 2 - если пересекаются
-        // 3 - если совпадают
+        // 1 - если параллельны | k1 == k2
+        // 2 - если пересекаются | ни 3 и ни 4
+        // 3 - если совпадают | k1 == k2 && b1 == b2
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
-        // ------------------------------------------------------------------------------------
-        return 0; // Замените данный оператор кодом, решающим поставленную задачу.
+        // -----------------------------------------------------------------------------------
+        if (Math.abs(k1 - k2) < 0.000001)
+        {
+            if (Math.abs(b1 - b2) < 0.000001)
+                return 3;
+            return 1;
+        }
+        return 2; // Замените данный оператор кодом, решающим поставленную задачу.
     }
 }
