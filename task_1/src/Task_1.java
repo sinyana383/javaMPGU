@@ -33,21 +33,15 @@ public class Task_1 implements Task_1_base {
         // 2 - аргументы функции заданы некорректно
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // ------------------------------------------------------------------------------------
-        if (Math.abs(0 - width) < 0.000001 || Math.abs(0 - height) < 0.000001)
+        if (width < 0.000001 || height < 0.000001)
             return 2;
-        if(width < 0 || height < 0)
-            return 2;
-        //double right_side_x = left_up_x + width;
-        double bottom_side_y = left_up_y - height;
-        if (left_up_x + width - x < 0 || x - left_up_x < 0)
+        double right_x = left_up_x + width;
+        double bottom_y = left_up_y - height;
+        if(right_x - x < 0.000001 || x - left_up_x < 0.000001 )
             return 0;
-        if(y - bottom_side_y < 0 || left_up_y - y < 0)
+        if(y - bottom_y < 0.000001 || left_up_y - y < 0.000001 )
             return 0;
-        if (Math.abs(width - x) < 0.000001 || Math.abs(x - left_up_x) < 0.000001)
-            return 0;
-        if(Math.abs(y - bottom_side_y) < 0.000001 || Math.abs(left_up_y - y) < 0.000001)
-            return 0;
-        return 1; // Замените данный оператор кодом, решающим поставленную задачу.
+        return 1;
     }
     @Override
     public int subtask_4_if(double x0, double y0, double k, double b) {
@@ -138,11 +132,23 @@ public class Task_1 implements Task_1_base {
         // 2 - аргументы функции заданы некорректно
         // Допустимой погрешностью при сравнении переменных типа double считать 0.000001
         // ------------------------------------------------------------------------------------
-        if (time < 0 || speed < 0)
+        if (time < 0.000001 || speed < 0.000001)
             return 2;
-        double all_path =  speed * time;    // !! скорость может быть отрицательной
-        all_path *= vx;
-        if(Math.abs(all_path - wall) < 0.000001)
+        if(Math.abs(wall) < 0.000001)
+            return 1;
+        double all_path =  speed * time;
+        if (vx < 0.000001)
+        {
+            if(wall > 0)
+                return 0;
+            if(-all_path - wall < 0.000001)
+                return 1;
+            return 0;
+        }
+
+        if(wall < 0)
+            return 0;
+        if(all_path - wall > -0.000001)
             return 1;
         return 0;
     }
