@@ -1,4 +1,4 @@
 Meener
 - puzzle
-- военный сеттинг
-- сапёр
+- military
+- Minesweeper
