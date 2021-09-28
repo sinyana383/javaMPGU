@@ -134,21 +134,12 @@ public class Task_1 implements Task_1_base {
         // ------------------------------------------------------------------------------------
         if (time < 0.000001 || speed < 0.000001)
             return 2;
-        if(Math.abs(wall) < 0.000001)
+        if (Math.abs(vx) < 0.000001 && Math.abs(wall) < 0.000001)
             return 1;
-        double all_path =  speed * time;
-        if (vx < 0.000001)
-        {
-            if(wall > 0)
-                return 0;
-            if(-all_path - wall < 0.000001)
-                return 1;
+        if (Math.abs(vx) < 0.000001)
             return 0;
-        }
-
-        if(wall < 0)
-            return 0;
-        if(all_path - wall > -0.000001)
+        double len = Math.sqrt((wall * wall) + (wall*vy * wall*vy) + (wall*vz * wall*vz));   // длина
+        if (((len / speed) - time) < 0.000001)
             return 1;
         return 0;
     }
