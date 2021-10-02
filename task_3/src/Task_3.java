@@ -47,7 +47,19 @@ public class Task_3 implements Task_3_base {
         // a(0) = num
         // a(n) = a(n - 1) * d + 1
         // Найти сумму первых cnt элементов последовательности
-        return 0;
+        int summ = 0;
+        int prev = num;
+        for(int i = 0; i < cnt; ++i)
+        {
+            if(i == 0)
+                summ += num;
+            else
+            {
+                summ += prev*d + 1;
+                prev = prev*d + 1;
+            }
+        }
+        return summ;
     }
 
     @Override
@@ -56,6 +68,18 @@ public class Task_3 implements Task_3_base {
         // S(n) = 1 + 1 * 2 + 1 * 2 * 3 + ... + n!
         // для заданного n
         // (n! - это n-факториал. Кто не знает - гуглите)
-        return 0;
+        if(n == 0)
+            return 1;
+        int res = 0;
+        for(int i = 1; i <= n; ++i)
+        {
+            int factorial = 1;
+            for(int j = 2; j <= i; ++j)
+            {
+                factorial *= j;
+            }
+            res += factorial;
+        }
+        return res;
     }
 }
