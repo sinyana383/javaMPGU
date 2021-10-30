@@ -96,7 +96,23 @@ public class Task_5 implements Task_5_base {
     public HashMap<String, Double> subtask_7_HashMap(ArrayList<String> data) {
         // Дан список строк. Построить словарь, содержащий частоты слов
         // для данного списка в процентах
-        return null;
+        int size = data.size();
+        HashMap<String, Double> res = new HashMap<String, Double>();
+        HashMap<String, Integer> count = new HashMap<String, Integer>();
+        for(int i = 0; i < data.size(); ++i)
+        {
+            String getStr = data.get(i);
+            if(!count.containsKey(getStr))
+                count.put(getStr, 1);
+            else
+                count.put(getStr, count.get(getStr) + 1);
+        }
+        for(String key: count.keySet())
+        {
+            double per = (double)count.get(key) * 100 /  (double)size;
+            res.put(key, per);
+        }
+        return res;
     }
 
     @Override
@@ -104,6 +120,34 @@ public class Task_5 implements Task_5_base {
         // Дан список чисел. Сформировать словарь, содержащий среднее,
         // максимальное и минимальное значения из данного списка. Ключи
         // словаря "mean", "max", "min" соответственно
-        return null;
+        HashMap<String, Double> res = new HashMap<String,Double>(3);
+        // ЧТО ЗНАЧИТ СРЕДНЕЕ???
+        int max_in = 0;
+        int min_in = 0;
+        if(data.size() >= 3)
+        {
+            res.put("min", data.get(1));
+            min_in = 1;
+            res.put("max", data.get(2));
+            max_in = 2;
+        }
+        double sum = 0;
+        for(int i = 0; i < data.size(); ++i)
+        {
+            double num = data.get(i);
+            if(num > res.get("max"))
+            {
+                res.put("max", num);
+                max_in = i;
+            }
+            if(num < res.get("min"))
+            {
+                res.put("min", num);
+                min_in = i;
+            }
+            sum += data.get(i);
+        }
+        res.put("mean", sum/data.size());
+        return res;
     }
 }
