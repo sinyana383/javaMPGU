@@ -26,10 +26,10 @@ int gameOver;
 // Map
 void Setup() 
 {
-	srand(time(0));	// каждый раз разные значения
+	//srand(time(0));	// каждый раз разные значения
 	gameOver = false;
 	dir = STOP;
-	x = 0;
+	x = 0;  
 	y = 0;
 	xGoal = rand() % 20;
 	yGoal = rand() % 20;
@@ -70,7 +70,6 @@ void Draw()
 }
 void SetMinas()
 {
-	srand(time(0));
 	mapLogic[xGoal][yGoal] = 100;	// установили, чтобы мина не попала на это место
 	for (int i = 0; i < height; ++i)
 	{
