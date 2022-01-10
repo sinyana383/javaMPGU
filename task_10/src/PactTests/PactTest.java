@@ -1,6 +1,4 @@
 package PactTests;
-
-
 import PactStorge.*;
 import org.junit.*;
 
