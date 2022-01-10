@@ -48,4 +48,14 @@ public class PactTest extends Assert {
                 (IllegalArgumentException.class, () -> pactsStorge.addPactToList("123", "20131132"));
         assertEquals("invalid date", exception.getMessage().toLowerCase());
     }
+    @Test
+    public void addPactToList_notUniqueNumber_throwsException()
+    {
+        PactsStorge pactsStorge = new PactsStorge();
+        pactsStorge.addPactToList("123", "20131231");
+
+        var exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStorge.addPactToList("123", "20130323"));
+        assertEquals("number is not unique", exception.getMessage().toLowerCase());
+    }
 }
