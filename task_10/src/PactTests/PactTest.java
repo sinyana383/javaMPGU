@@ -4,9 +4,12 @@ import org.junit.*;
 
 public class PactTest extends Assert {
     @Test
-    public void newPact_validArgs_newOk()
+    public void addPactToList_validArgs_newCorrectPactOk()
     {
-        Pact pact = new Pact("123", "20130323");
+        PactsStorge pactsStorge = new PactsStorge();
+
+        pactsStorge.addPactToList("123", "20130323");
+        Pact pact = pactsStorge.getPact("123");
         assertEquals(pact.getNumber(), "123");
         assertEquals(pact.getDate(), "20130323");
     }
