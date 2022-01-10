@@ -23,7 +23,7 @@ public class PactsStorge {
         }
         return null;
     }
-    public int getPactsNumber()
+    public int getSize()
     {
         if(pactsList != null)
             return pactsList.size();
