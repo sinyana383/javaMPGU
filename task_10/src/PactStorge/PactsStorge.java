@@ -11,7 +11,10 @@ public class PactsStorge {
 
     public void addPactToList(String number, String date)
     {
-        pactsList.add(new Pact(number, date));
+        Pact newPact = new Pact(number, date);
+        if(getPact(number) != null)
+            throw new IllegalArgumentException("number is not unique");
+        pactsList.add(newPact);
     }
     public Pact getPact(String number)
     {
