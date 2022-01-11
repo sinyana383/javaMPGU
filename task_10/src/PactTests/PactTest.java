@@ -163,24 +163,25 @@ public class PactTest extends Assert {
     }
 
     @Test
-    public void findAllPaymentsByPactNumber_existentAndNonexistentPactsWithOrWithoutPayments_nullOrArrayListReturn()
+    public void findAllPaymentsByPactNumberAndNumber_existentAndNonexistentPactsWithOrWithoutPayments_nullOrArrayListReturn()
     {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
                 (100, 1, "Платежное поручение", "123", "20210113");
         pactsStore.addPayment
-                (100, 2, "Платежное поручение", "123", "20210113");
-        assertEquals(2, pactsStore.findAllPaymentsByPactNumber("123").size());
-        assertEquals(1, pactsStore.findAllPaymentsByPactNumber("123").get(0).getPaymentNumber());
-        assertEquals(2, pactsStore.findAllPaymentsByPactNumber("123").get(1).getPaymentNumber());
-        assertNull(pactsStore.findAllPaymentsByPactNumber("1234"));
+                (100, 1, "Платежное поручение", "123", "20210213");
+        assertEquals(2, pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).size());
+        assertEquals("20210113", pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).get(0).getDate());
+        assertEquals("20210213", pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).get(1).getDate());
+        assertNull(pactsStore.findAllPaymentsByPactNumberAndNumber("1234", 1));
 
         pactsStore = new PactsStore();
         pactsStore.addPayment
                 (100, 2, "Платежное поручение", "12345", "20210113");
         pactsStore.deletePayments(2, "12345", "20210113");
         assertNotNull(pactsStore.getPact("12345"));
-        assertNull(pactsStore.findAllPaymentsByPactNumber("12345"));
+        assertNull(pactsStore.findAllPaymentsByPactNumberAndNumber("12345", 2));
     }
+
 }
