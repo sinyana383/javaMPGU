@@ -2,6 +2,8 @@ package PactTests;
 import PactStore.*;
 import org.junit.*;
 
+import java.util.ArrayList;
+
 public class PactTest extends Assert {
     @Test
     public void addPactToList_validArgs_newCorrectPactOk()
@@ -113,5 +115,27 @@ public class PactTest extends Assert {
                         (120, 1, "Платежное поручение", "123", "20131231"));
         assertEquals("payment with the same args is already exist", exception.getMessage().toLowerCase());
     }
+    @Test
+    public void addPayment_deletePayments_completelyDeletedPayments()
+    {
+        PactsStore pactsStore = new PactsStore();
 
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20131231");
+        pactsStore.addPayment
+                (100, 1, "Банковский ордер", "123", "20131231");
+        pactsStore.addPayment
+                (100, 2, "Платежное поручение", "123", "20131231");
+
+        PactsStore expectedPactsStore = new PactsStore();
+        expectedPactsStore.addPayment
+                (100, 2, "Платежное поручение", "123", "20131231");
+        ArrayList<Payment> expectedPayments = expectedPactsStore.getPact("123").getPaymentsList();
+
+        pactsStore.deletePayments(1,  "123", "20131231");
+        ArrayList<Payment> payments = pactsStore.getPact("123").getPaymentsList();
+        assertEquals(1,payments.size());
+        assertEquals(expectedPayments.size(),payments.size());
+        assertEquals(expectedPayments.get(0).getPaymentNumber(), payments.get(0).getPaymentNumber());
+    }
 }
