@@ -10,10 +10,10 @@ public class PactTest extends Assert {
     {
         PactsStore pactsStore = new PactsStore();
 
-        pactsStore.addPactToList("123", "20131231");
+        pactsStore.addPactToList("123", "20130701");
         Pact pact = pactsStore.getPact("123");
         assertEquals("123", pact.getNumber());
-        assertEquals("20131231", pact.getDate());
+        assertEquals("20130701", pact.getDate());
         assertEquals(1, pactsStore.getSize());
     }
     @Test
@@ -160,5 +160,27 @@ public class PactTest extends Assert {
                 (IllegalArgumentException.class, () -> pactsStore.deletePayments(1,  "123", "20131230"));
         assertEquals("try to delete not existent payment", exception.getMessage().toLowerCase());
 
+    }
+
+    @Test
+    public void findAllPaymentsByPactNumber_existentAndNonexistentPactsWithOrWithoutPayments_nullOrArrayListReturn()
+    {
+        PactsStore pactsStore = new PactsStore();
+
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20210113");
+        pactsStore.addPayment
+                (100, 2, "Платежное поручение", "123", "20210113");
+        assertEquals(2, pactsStore.findAllPaymentsByPactNumber("123").size());
+        assertEquals(1, pactsStore.findAllPaymentsByPactNumber("123").get(0).getPaymentNumber());
+        assertEquals(2, pactsStore.findAllPaymentsByPactNumber("123").get(1).getPaymentNumber());
+        assertNull(pactsStore.findAllPaymentsByPactNumber("1234"));
+
+        pactsStore = new PactsStore();
+        pactsStore.addPayment
+                (100, 2, "Платежное поручение", "12345", "20210113");
+        pactsStore.deletePayments(2, "12345", "20210113");
+        assertNotNull(pactsStore.getPact("12345"));
+        assertNull(pactsStore.findAllPaymentsByPactNumber("12345"));
     }
 }
