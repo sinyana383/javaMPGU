@@ -19,9 +19,14 @@ public class Pact extends Document{
     {
         this.number = number;
     }
+
     public void addNewPayment(Payment newPayment)
     {
         paymentsList.add(newPayment);
+    }
+    public void deletePayment(Payment payment)
+    {
+        paymentsList.remove(payment);
     }
 
     public String getNumber()

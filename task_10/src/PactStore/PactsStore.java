@@ -39,6 +39,15 @@ public class PactsStore {
         pact.addNewPayment(newPayment);
     }
 
+    public void deletePayments(int paymentNumber, String pactNumber, String date)
+    {
+        ArrayList<Payment> paymentsToDelete = getPaymentListByNumberAndDate(paymentNumber, pactNumber, date);
+        if(paymentsToDelete == null)
+            throw new IllegalArgumentException("try to delete not existent payment");
+        for(Payment payment : paymentsToDelete)
+            getPact(pactNumber).deletePayment(payment);
+    }
+
     public Pact getPact(String number)
     {
         if(pactsList == null)
