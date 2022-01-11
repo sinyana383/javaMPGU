@@ -101,5 +101,17 @@ public class PactTest extends Assert {
                         (-2, 1, "Платежное поручение", "123", "20131231"));
         assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
     }
+    @Test
+    public void addPayment_addTheSamePayment_throwsException()
+    {
+        PactsStore pactsStore = new PactsStore();
+
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20131231");
+        var exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (120, 1, "Платежное поручение", "123", "20131231"));
+        assertEquals("payment with the same args is already exist", exception.getMessage().toLowerCase());
+    }
 
 }
