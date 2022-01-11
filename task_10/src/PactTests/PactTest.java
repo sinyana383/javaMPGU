@@ -101,4 +101,5 @@ public class PactTest extends Assert {
                         (-2, 1, "Платежное поручение", "123", "20131231"));
         assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
     }
+
 }
