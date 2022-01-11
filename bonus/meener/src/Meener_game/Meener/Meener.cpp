@@ -4,125 +4,204 @@
 #include <ctime>
 using namespace std;
 
-// map
-const int width = 20;
-const int height = 20;
+// player
 int x, y;
-int mapToDraw[height][width] = { 0 };
-int xGoal, yGoal;
-// move
-enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN};
+enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 eDirection dir;
 bool movement = false;
-// Logic Map
-// 9 - mina
-// 0-8 - count around
-int mapLogic[height][width] = { 0 };
-// Game over
-int gameOver;
 
-
-
-// Map
-void Setup() 
+class Map
 {
-	srand(time(0));	// каждый раз разные значения
-	gameOver = false;
-	dir = STOP;
-	x = 0;
-	y = 0;
-	xGoal = rand() % 20;
-	yGoal = rand() % 20;
-	mapToDraw[xGoal][yGoal] = 100;
-}
-void Draw() 
+public:
+	const static int width = 20;  
+	const static int height = 20;
+ 
+	Map() 
+	{
+		srand(time(0));
+		mapToDraw = new int*[height];
+		for (int i = 0; i < height; ++i)
+			mapToDraw[i] = new int[width];
+
+		mapLogic = new int* [height];
+		for (int i = 0; i < height; ++i)
+			mapLogic[i] = new int[width];
+
+		SetNulls(mapToDraw);
+		SetNulls(mapLogic);
+
+		xGoal = rand() % width;
+		yGoal = rand() % height;
+	};
+	~Map() 
+	{
+		
+		for (int i = 0; i < height; ++i)
+			delete [] mapToDraw[i];
+		delete [] mapToDraw;
+
+		for (int i = 0; i < height; ++i)
+			delete[] mapLogic[i];
+		delete[] mapLogic;
+	};
+
+	int GetElementFromMapLogic(int x, int y) { return mapLogic[x][y]; }
+	int GetElementFromMapToDraw(int x, int y) { return mapToDraw[x][y]; }
+	int GetXGoal() { return xGoal; }
+	int GetYGoal() { return yGoal; }
+
+	void SetElementToMapToDraw(int x, int y, int element) { mapToDraw[x][y] = element; }
+	void SetElementToMapLogic(int x, int y, int element) { mapLogic[x][y] = element; }
+
+	void DrawLogicMap();
+	void DrawMap();
+	void SetMines();
+	void SetNumbers();
+	void SetNulls(int **map) 
+	{
+		for (int i = 0; i < height; ++i)
+			for (int j = 0; j < width; ++j)
+				map[i][j] = 0;
+	}
+
+private:
+	int **mapToDraw;
+	int **mapLogic;
+	int xGoal, yGoal;
+};
+
+ void Map::DrawMap()
 {
 	system("cls");
-	for (int i = 0; i < width + 2; ++i)
+	for (int i = 0; i < Map::width + 2; ++i)
 		cout << "-";
 	cout << endl;
 
-	for (int i = 0; i < height; ++i)	// высота
+	for (int i = 0; i < Map::height; ++i)	// высота
 	{
 		cout << "|";
-		for (int j = 0; j < width; ++j) // ширина
+		for (int j = 0; j < Map::width; ++j) // ширина
 		{
 			if (y == i && x == j)
 				cout << "@";
-			else if (mapToDraw[i][j] == 100)
+			else if (GetElementFromMapToDraw(i, j) == 100)
 				cout << '!';
-			else if (mapToDraw[i][j] == -1)
+			else if (GetElementFromMapToDraw(i, j) == -1)
 				cout << '.';
-			else if (mapToDraw[i][j] == 0)
+			else if (GetElementFromMapToDraw(i, j) == 0)
 				cout << '*';
-			else if (mapToDraw[i][j] > 0 && mapToDraw[i][j] < 9)
-				cout << mapToDraw[i][j];
-			else if (mapToDraw[i][j] == 9)
+			else if (GetElementFromMapToDraw(i, j) > 0 && GetElementFromMapToDraw(i, j) < 9)
+				cout << GetElementFromMapToDraw(i, j);
+			else if (GetElementFromMapToDraw(i, j) == 9)
 				cout << 'X';
 		}
 		cout << "|";
 		cout << endl;
 	}
 
-	for (int i = 0; i < width + 2; ++i)
+	for (int i = 0; i < Map::width + 2; ++i)
 		cout << "-";
 	cout << endl;
 }
-void SetMinas()
+ void Map::SetMines()
 {
-	srand(time(0));
-	mapLogic[xGoal][yGoal] = 100;	// установили, чтобы мина не попала на это место
-	for (int i = 0; i < height; ++i)
+	SetElementToMapLogic(xGoal, yGoal, 100); // установили, чтобы мина не попала на это место
+	for (int i = 0; i < Map::height; ++i)
 	{
-		for (int j = 0; j < width; ++j)
+		for (int j = 0; j < Map::width; ++j)
 		{
 			if (rand() % 5 == 0 && i != xGoal && j != yGoal)
-				mapLogic[i][j] = 9;
+				SetElementToMapLogic(i, j, 9);
 		}
 	}
 
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 2; ++i) 
 	{
-		for (int j = 0; j < 3; ++j)
+		for (int j = 0; j < 2; ++j)
 		{
 			if (i != xGoal && j != yGoal)
-				mapLogic[i][j] = 0;
+				SetElementToMapLogic(i, j, 0);
 		}
 	}
 }
-void SetNumbers()
+ void Map::SetNumbers()
 {
-	for (int i = 0; i < height; ++i)
+	for (int i = 0; i < Map::height; ++i)
 	{
-		for (int j = 0; j < width; ++j)
+		for (int j = 0; j < Map::width; ++j)
 		{
-			if (mapLogic[i][j] == 9)
+			if (GetElementFromMapLogic(i, j) == 9)
 				continue;
 			int countMinas = 0;
 			//up
 			if (i - 1 >= 0)
-				if (mapLogic[i - 1][j] == 9) { ++countMinas; }
-			if (i - 1 >= 0 && j + 1 < width)
-				if (mapLogic[i - 1][j + 1] == 9) { ++countMinas; }
+				if (GetElementFromMapLogic(i - 1, j) == 9) { ++countMinas; }
+			if (i - 1 >= 0 && j + 1 < Map::width)
+				if (GetElementFromMapLogic(i - 1, j + 1) == 9) { ++countMinas; }
 			if (i - 1 >= 0 && j - 1 >= 0)
-				if (mapLogic[i - 1][j - 1] == 9) { ++countMinas; }
+				if (GetElementFromMapLogic(i - 1, j - 1) == 9) { ++countMinas; }
 			//sides
-			if (j + 1 < width)
-				if (mapLogic[i][j + 1] == 9) { ++countMinas; }
+			if (j + 1 < Map::width)
+				if (GetElementFromMapLogic(i, j + 1) == 9) { ++countMinas; }
 			if (j - 1 >= 0)
-				if (mapLogic[i][j - 1] == 9) { ++countMinas; }
+				if (GetElementFromMapLogic(i, j - 1) == 9) { ++countMinas; }
 			//down
-			if (i + 1 < height)
-				if (mapLogic[i + 1][j] == 9) { ++countMinas; }
-			if (i + 1 < height && j + 1 < width)
-				if (mapLogic[i + 1][j + 1] == 9) { ++countMinas; }
-			if (i + 1 < height && j - 1 >= 0)
-				if (mapLogic[i + 1][j - 1] == 9) { ++countMinas; }
+			if (i + 1 < Map::height)
+				if (GetElementFromMapLogic(i + 1, j) == 9) { ++countMinas; }
+			if (i + 1 < Map::height && j + 1 < Map::width)
+				if (GetElementFromMapLogic(i + 1, j + 1) == 9) { ++countMinas; }
+			if (i + 1 < Map::height && j - 1 >= 0)
+				if (GetElementFromMapLogic(i + 1, j - 1) == 9) { ++countMinas; }
 
-			mapLogic[i][j] = countMinas;
+			SetElementToMapLogic(i, j, countMinas);
 		}
 	}
-	mapLogic[xGoal][yGoal] = 100; //сохранить место
+	SetElementToMapLogic(xGoal, yGoal, 100);
+}
+ void Map::DrawLogicMap()
+{
+	for (int i = 0; i < Map::height; ++i)
+	{
+		for (int j = 0; j < Map::width; ++j)
+		{
+			cout << GetElementFromMapLogic(i, j);
+		}
+		cout << endl;
+	}
+}
+
+//class Player
+//{
+//public:
+//	Player();
+//	~Player();
+//  int Input();
+//  void Logic();
+//
+//private:
+//	int x, y;
+//	eDirection dir;
+//	bool movement = false;
+//  static int gameOver;
+//}
+
+int gameOver;
+
+
+
+// Map
+void SetUpPlayerAndMapCharacteristics(Map *map) 
+{
+	srand(time(0));	// каждый раз разные значения
+	gameOver = false;
+
+	// ForPlayer
+	dir = STOP;
+	x = 0;
+	y = 0;
+
+	// ForMap
+	(*map).SetElementToMapToDraw((*map).GetXGoal(), (*map).GetYGoal(), 100);
 }
 // Move
 int Input() 
@@ -151,7 +230,7 @@ int Input()
 	}
 	return 0;
 }
-void Logic() 
+void Logic(Map* map)
 {
 	switch (dir)
 	{
@@ -163,7 +242,7 @@ void Logic()
 		movement = true;
 		break;
 	case RIGHT:
-		if (x < width - 1)
+		if (x < Map::width - 1)
 			++x;
 		movement = true;
 		break;
@@ -173,7 +252,7 @@ void Logic()
 		movement = true;
 		break;
 	case DOWN:
-		if (y < height - 1)
+		if (y < Map::height - 1)
 			++y;
 		movement = true;
 		break;
@@ -181,32 +260,21 @@ void Logic()
 		break;
 	}
 	dir = STOP;
-	if (mapLogic[y][x] > 0 && mapLogic[y][x] < 9)
-		mapToDraw[y][x] = mapLogic[y][x];
-	else if (mapLogic[y][x] == 0)
-		mapToDraw[y][x] = -1;
-	else if (mapLogic[y][x] == 9) 
+	if ((*map).GetElementFromMapLogic(y, x) > 0 && (*map).GetElementFromMapLogic(y, x) < 9)
+		(*map).SetElementToMapToDraw(y, x, (*map).GetElementFromMapLogic(y, x));
+	else if ((*map).GetElementFromMapLogic(y, x) == 0)
+		(*map).SetElementToMapToDraw(y, x, -1);
+	else if ((*map).GetElementFromMapLogic(y, x) == 9)
 	{
-		mapToDraw[y][x] = 9;
+		(*map).SetElementToMapToDraw(y, x, 9);
 		gameOver = 1;
 	}
-	else if (mapLogic[y][x] == 100) 
+	else if ((*map).GetElementFromMapLogic(y, x) == 100)
 	{
 		gameOver = 2;
 	}
 }
 // Logic
-void DrawLogic()
-{
-	for (int i = 0; i < height; ++i) 
-	{
-		for (int j = 0; j < width; ++j) 
-		{
-			cout << mapLogic[i][j];
-		}
-		cout << endl;
-	}
-}
 
 //Game
 int	GameOver() 
@@ -221,46 +289,48 @@ int	GameOver()
 		a = _getch();
 	return (a);
 }
-void Start() 
+void Start(Map* map)
 {
 	system("cls");
 	cout << "\nStart?\n";
 	while (!_kbhit());
-	Setup();
-	SetMinas();
-	SetNumbers();
+
+	SetUpPlayerAndMapCharacteristics(map);
+	(*map).SetMines();
+	(*map).SetNumbers();
 }
-void Game() 
+void Game(Map* map)
 {
-	Start();
-	Draw();
+	Start(map);
+	(*map).DrawMap();
 	while (!gameOver)
 	{
 		if (movement)
 		{
-			Draw();
+			(*map).DrawMap();
 			movement = false;
 		}
 		Input();
-		Logic();
+		Logic(map);
 		if (gameOver == 2) 
 		{
-			Draw();
+			(*map).DrawMap();
 			return;
 		}
 	}
-	Draw();
+	(*map).DrawMap();
 	while (!Input());
-	Logic();
-	Draw();
+	Logic(map);
+	(*map).DrawMap();
 }
 
 int main()
 {
 	int resume = 13;
+	Map map;
 	while (resume == 13) 
 	{
-		Game();
+		Game(&map);
 		resume = GameOver();	// Пока нельзя продолжить
 	}
 }
