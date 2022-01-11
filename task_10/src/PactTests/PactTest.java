@@ -184,4 +184,28 @@ public class PactTest extends Assert {
         assertNull(pactsStore.findAllPaymentsByPactNumberAndNumber("12345", 2));
     }
 
+    @Test
+    public void returnAllPayments_differentPactsStores_nullOrList()
+    {
+        PactsStore pactsStore = new PactsStore();
+
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20131231");
+        pactsStore.addPayment
+                (100, 1, "Банковский ордер", "123", "20131231");
+        pactsStore.addPayment
+                (100, 2, "Платежное поручение", "123", "20131231");
+
+        assertEquals(3, pactsStore.returnAllPayments().size());
+
+        pactsStore.addPactToList("1234", "20200904");
+        assertEquals(3, pactsStore.returnAllPayments().size());
+
+        pactsStore = new PactsStore();
+        pactsStore.addPactToList("1234", "20200904");
+        assertNull(pactsStore.returnAllPayments());
+
+        pactsStore = new PactsStore();
+        assertNull(pactsStore.returnAllPayments());
+    }
 }
