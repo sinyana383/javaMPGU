@@ -116,7 +116,7 @@ public class PactTest extends Assert {
         assertEquals("payment with the same args is already exist", exception.getMessage().toLowerCase());
     }
     @Test
-    public void addPayment_deletePayments_completelyDeletedPayments()
+    public void deletePayments_deletePayments_completelyDeletedPayments()
     {
         PactsStore pactsStore = new PactsStore();
 
