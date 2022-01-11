@@ -65,7 +65,7 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20131231");
+                (100, 1, "1", "123", "20131231");
         Payment newPayment = pactsStore.getPact("123").getPaymentsList().get(0);
         assertEquals(100, newPayment.getAmount());
         assertEquals(1, newPayment.getPaymentNumber());
@@ -85,22 +85,22 @@ public class PactTest extends Assert {
 
         exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.addPayment
-                        (100, 1, "Платежное поручение", null, "20131231"));
+                        (100, 1, "1", null, "20131231"));
         assertEquals("number and date can't be null", exception.getMessage().toLowerCase());
 
         exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.addPayment
-                        (100, 1, "Платежное поручение", "123", "20131232"));
+                        (100, 1, "1", "123", "20131232"));
         assertEquals("invalid date", exception.getMessage().toLowerCase());
 
         exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.addPayment
-                        (0, 1, "Платежное поручение", "123", "20131231"));
+                        (0, 1, "1", "123", "20131231"));
         assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
 
         exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.addPayment
-                        (-2, 1, "Платежное поручение", "123", "20131231"));
+                        (-2, 1, "1", "123", "20131231"));
         assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
     }
     @Test
@@ -109,10 +109,10 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20131231");
+                (100, 1, "1", "123", "20131231");
         var exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.addPayment
-                        (120, 1, "Платежное поручение", "123", "20131231"));
+                        (120, 1, "1", "123", "20131231"));
         assertEquals("payment with the same args is already exist", exception.getMessage().toLowerCase());
     }
     @Test
@@ -121,15 +121,15 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20131231");
+                (100, 1, "1", "123", "20131231");
         pactsStore.addPayment
-                (100, 1, "Банковский ордер", "123", "20131231");
+                (100, 1, "2", "123", "20131231");
         pactsStore.addPayment
-                (100, 2, "Платежное поручение", "123", "20131231");
+                (100, 2, "1", "123", "20131231");
 
         PactsStore expectedPactsStore = new PactsStore();
         expectedPactsStore.addPayment
-                (100, 2, "Платежное поручение", "123", "20131231");
+                (100, 2, "1", "123", "20131231");
         ArrayList<Payment> expectedPayments = expectedPactsStore.getPact("123").getPaymentsList();
 
         pactsStore.deletePayments(1,  "123", "20131231");
@@ -144,11 +144,11 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20131231");
+                (100, 1, "1", "123", "20131231");
         pactsStore.addPayment
-                (100, 1, "Банковский ордер", "123", "20131231");
+                (100, 1, "2", "123", "20131231");
         pactsStore.addPayment
-                (100, 2, "Платежное поручение", "123", "20131231");
+                (100, 2, "1", "123", "20131231");
 
         var exception = assertThrows
                 (IllegalArgumentException.class, () -> pactsStore.deletePayments(3,  "123", "20131231"));
@@ -168,9 +168,9 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20210113");
+                (100, 1, "1", "123", "20210113");
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20210213");
+                (100, 1, "1", "123", "20210213");
         assertEquals(2, pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).size());
         assertEquals("20210113", pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).get(0).getDate());
         assertEquals("20210213", pactsStore.findAllPaymentsByPactNumberAndNumber("123", 1).get(1).getDate());
@@ -178,7 +178,7 @@ public class PactTest extends Assert {
 
         pactsStore = new PactsStore();
         pactsStore.addPayment
-                (100, 2, "Платежное поручение", "12345", "20210113");
+                (100, 2, "1", "12345", "20210113");
         pactsStore.deletePayments(2, "12345", "20210113");
         assertNotNull(pactsStore.getPact("12345"));
         assertNull(pactsStore.findAllPaymentsByPactNumberAndNumber("12345", 2));
@@ -190,11 +190,11 @@ public class PactTest extends Assert {
         PactsStore pactsStore = new PactsStore();
 
         pactsStore.addPayment
-                (100, 1, "Платежное поручение", "123", "20131231");
+                (100, 1, "1", "123", "20131231");
         pactsStore.addPayment
-                (100, 1, "Банковский ордер", "123", "20131231");
+                (100, 1, "2", "123", "20131231");
         pactsStore.addPayment
-                (100, 2, "Платежное поручение", "123", "20131231");
+                (100, 2, "1", "123", "20131231");
 
         assertEquals(3, pactsStore.returnAllPayments().size());
 

@@ -16,9 +16,9 @@ public class Payment extends Document {
         this.paymentNumber = paymentNumber;
         if(payType == null)
             throw new IllegalArgumentException("payment type can't be null");
-        if(payType.equals("Платежное поручение"))
+        if(payType.equals("1"))
             type = paymentType.PAYMENT_ORDER;
-        else if(payType.equals("Банковский ордер"))
+        else if(payType.equals("2"))
             type = paymentType.BANK_ORDER;
         else
             throw new IllegalArgumentException("wrong payment type name");
