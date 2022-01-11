@@ -62,12 +62,43 @@ public class PactTest extends Assert {
     {
         PactsStore pactsStore = new PactsStore();
 
-        pactsStore.addPayment(100, 1, "Платежное поручение", "123", "20131231");
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20131231");
         Payment newPayment = pactsStore.getPact("123").getPaymentsList().get(0);
         assertEquals(100, newPayment.getAmount());
         assertEquals(1, newPayment.getPaymentNumber());
         assertEquals("Платежное поручение", newPayment.getType());
         assertEquals("123", newPayment.getPactNumber());
         assertEquals("20131231", newPayment.getDate());
+    }
+    @Test
+    public void addPayment_invalidArgs_throwsException()
+    {
+        PactsStore pactsStore = new PactsStore();
+
+        var exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (100, 1, null, "123", "20131231"));
+        assertEquals("payment type can't be null", exception.getMessage().toLowerCase());
+
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (100, 1, "Платежное поручение", null, "20131231"));
+        assertEquals("number and date can't be null", exception.getMessage().toLowerCase());
+
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (100, 1, "Платежное поручение", "123", "20131232"));
+        assertEquals("invalid date", exception.getMessage().toLowerCase());
+
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (0, 1, "Платежное поручение", "123", "20131231"));
+        assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
+
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.addPayment
+                        (-2, 1, "Платежное поручение", "123", "20131231"));
+        assertEquals("the amount of money should be positive number", exception.getMessage().toLowerCase());
     }
 }
