@@ -1,10 +1,11 @@
-package PactStorge;
+package PactStore;
 
 import java.util.ArrayList;
 
-public class PactsStorge {
+public class PactsStore {
     private ArrayList<Pact> pactsList;
-    public PactsStorge()
+
+    public PactsStore()
     {
         pactsList = new ArrayList<>();
     }
@@ -16,6 +17,19 @@ public class PactsStorge {
             throw new IllegalArgumentException("number is not unique");
         pactsList.add(newPact);
     }
+    public void addPayment(int amount, int paymentNumber, String payType, String pactNumber, String date)
+    {
+        Payment newPayment = new Payment(amount, paymentNumber, payType, pactNumber, date);
+
+        Pact pact = getPact(newPayment.getPactNumber());
+        if(pact == null)    // если нет договора, он создается на дату первой платежки
+        {
+            addPactToList(pactNumber, date);
+            pact = getPact(newPayment.getPactNumber());
+        }
+        pact.addNewPayment(newPayment);
+    }
+
     public Pact getPact(String number)
     {
         if(pactsList == null)
@@ -32,4 +46,5 @@ public class PactsStorge {
             return pactsList.size();
         return 0;
     }
+
 }
