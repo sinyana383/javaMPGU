@@ -63,6 +63,7 @@ public class PactsStore {
         Pact pact = getPact(pactNumber);
         ArrayList<Payment> payments = new ArrayList<>();
 
+
         if(pact == null)
             return null;
         for(Payment payment : pact.getPaymentsList())
@@ -70,7 +71,10 @@ public class PactsStore {
             if (payment.getPaymentNumber() == paymentNumber && payment.getDate().equals(date))
                 payments.add(payment);
         }
-            return payments;
+
+        if(payments.size() == 0)
+            return null;
+        return payments;
     }
     public int getSize()
     {
