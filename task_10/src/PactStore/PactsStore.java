@@ -21,6 +21,15 @@ public class PactsStore {
     {
         Payment newPayment = new Payment(amount, paymentNumber, payType, pactNumber, date);
 
+        ArrayList<Payment> similarPayments = getPaymentListByNumberAndDate(paymentNumber, pactNumber, date);
+        if(similarPayments != null)
+        {
+            for (Payment payment : similarPayments)
+            {
+                if (payment.getType().equals(newPayment.getType()))
+                    throw new IllegalArgumentException("payment with the same args is already exist");
+            }
+        }
         Pact pact = getPact(newPayment.getPactNumber());
         if(pact == null)    // если нет договора, он создается на дату первой платежки
         {
@@ -39,6 +48,20 @@ public class PactsStore {
                 return pact;
         }
         return null;
+    }
+    public ArrayList<Payment> getPaymentListByNumberAndDate(int paymentNumber, String pactNumber, String date)
+    {
+        Pact pact = getPact(pactNumber);
+        ArrayList<Payment> payments = new ArrayList<>();
+
+        if(pact == null)
+            return null;
+        for(Payment payment : pact.getPaymentsList())
+        {
+            if (payment.getPaymentNumber() == paymentNumber && payment.getDate().equals(date))
+                payments.add(payment);
+        }
+            return payments;
     }
     public int getSize()
     {
