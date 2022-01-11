@@ -63,6 +63,24 @@ public class PactsStore {
             return null;
         return resList;
     }
+    public ArrayList<Payment> returnAllPayments()
+    {
+        ArrayList<Payment> allPayments = new ArrayList<>();
+
+        if(pactsList.size() == 0)
+            return null;
+        for(Pact pact : pactsList)
+        {
+            if(pact.getPaymentsList() != null)
+            {
+                allPayments.addAll(pact.getPaymentsList());
+            }
+        }
+        if(allPayments.size() != 0)
+            return allPayments;
+        return null;
+    }
+
 
     public Pact getPact(String number)
     {
