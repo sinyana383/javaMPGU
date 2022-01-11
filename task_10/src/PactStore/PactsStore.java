@@ -103,5 +103,4 @@ public class PactsStore {
             return pactsList.size();
         return 0;
     }
-
 }
