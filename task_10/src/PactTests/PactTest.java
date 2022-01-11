@@ -138,4 +138,27 @@ public class PactTest extends Assert {
         assertEquals(expectedPayments.size(),payments.size());
         assertEquals(expectedPayments.get(0).getPaymentNumber(), payments.get(0).getPaymentNumber());
     }
+    @Test
+    public void deletePayments_deleteNonexistentPayments_throwException()
+    {
+        PactsStore pactsStore = new PactsStore();
+
+        pactsStore.addPayment
+                (100, 1, "Платежное поручение", "123", "20131231");
+        pactsStore.addPayment
+                (100, 1, "Банковский ордер", "123", "20131231");
+        pactsStore.addPayment
+                (100, 2, "Платежное поручение", "123", "20131231");
+
+        var exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.deletePayments(3,  "123", "20131231"));
+                assertEquals("try to delete not existent payment", exception.getMessage().toLowerCase());
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.deletePayments(1,  "12", "20131231"));
+        assertEquals("try to delete not existent payment", exception.getMessage().toLowerCase());
+        exception = assertThrows
+                (IllegalArgumentException.class, () -> pactsStore.deletePayments(1,  "123", "20131230"));
+        assertEquals("try to delete not existent payment", exception.getMessage().toLowerCase());
+
+    }
 }
