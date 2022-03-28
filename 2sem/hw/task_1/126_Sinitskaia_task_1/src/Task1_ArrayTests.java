@@ -1,6 +1,7 @@
+import Array.DynamicArray;
 import org.junit.*;
 
-public class Task1_Tests extends Assert {
+public class Task1_ArrayTests extends Assert {
     @Test
     public void DynamicArray_NegativeSize_Exception()
     {

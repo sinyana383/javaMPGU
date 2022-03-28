@@ -1,3 +1,5 @@
+package DoubleLinkedList;
+
 public class DummyNode<T> implements ListNode<T> {
     private ListNode<T> next;
     private ListNode<T> prev;

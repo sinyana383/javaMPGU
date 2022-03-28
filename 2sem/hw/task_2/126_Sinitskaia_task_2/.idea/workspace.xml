@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40728f6c-0314-4f18-9cf5-dd738d98cd6e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/126_Sinitskaia_task_2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Task2_Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -15,3 +15,12 @@ DynamicArray.java|58|data[capacity] -> data[size]|pushBack_emptyAndFilledArray_A
 DynamicArray.java|62|size < 0 -> size <= 0|popBack_emptyArray_Exception
 DynamicArray.java|62|index > size -> index >= size| то же, что и в 42
 
+# DoubleLinkedList
+DoubleLinkedList.java|8|DummyNode<>() -> DummyNode<T>()|DoubleLinkedList_createEmpty_ListCreated
+DoubleLinkedList.java|35|--size -> ++size|insertAfter_EmptyList_ListChanged
+DoubleLinkedList.java|19|dummy.getPrev() -> dummy.getNext()|insertAfter_addNewNode_ListChanged
+DoubleLinkedList.java|22|dummy.getNext() -> dummy.getPrev()|insertAfter_addNewNode_ListChanged
+Node.java|15|this.next = prev -> this.next = next|insertAfter_addNewNode_ListChanged
+Node.java|15|this.prev = next -> this.prev = prev|insertAfter_addNewNode_ListChanged
+DoubleLinkedList.java|30|cur.getPrev() -> cur.getNext()|get_simpleCheckAndBounds_correctReturn
+DoubleLinkedList.java|26|index > size -> index >= size|get_simpleCheckAndBounds_correctReturn
