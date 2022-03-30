@@ -10,16 +10,6 @@ public class Task2_Tests extends Assert{
         }
     }
 
-    private boolean IsSorted(Integer[] arr)
-    {
-        for(int i = 0; i < arr.length - 1; ++i)
-        {
-            if (arr[i] > arr[i + 1])
-                return false;
-        }
-        return true;
-    }
-
     @Test
     public void BubbleSort_RandomParams_SuccessSort()
     {

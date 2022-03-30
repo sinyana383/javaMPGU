@@ -1,0 +1,15 @@
+QuickSort.java|12|split(data, e, b); -> split(data, b, e);|QuickSort_TwoElements_SuccessSort
+QuickSort.java|24|swap(data, left, baseElem) -> swap(data, left - 1, baseElem)|QuickSort_TwoElements_SuccessSort
+# добавить условие
+QuickSort.java|28|+ if (left < data.length && right < data.length)|QuickSort_TwoElements_SuccessSort
+QuickSort.java|25|left -> left - 1|QuickSort_contrastParams_SuccessSort
+QuickSort.java|29|left + 1 -> left|QuickSort_contrastParams_SuccessSort
+QuickSort.java|14|base + 2 -> base + 1|QuickSort_contrastParams_SuccessSort
+QuickSort.java|13|base - 2 -> base - 1|QuickSort_contrastParams_SuccessSort
+
+# MergeSorting
+MergeSort.java|19|middle - begin -> middle - begin + 1|MergeSort_TwoElements_SuccessSort
+MergeSort.java|35|from[secondFocus]) > 0 ->  from[secondFocus]) < 0|MergeSort_TwoElements_SuccessSort
+MergeSort.java|34|firstFocus -> firstFocus++|MergeSort_FourElements_SuccessSort
+MergeSort.java|17, 18|sorting, buffer -> buffer,sorting|MergeSort_contrastParams_SuccessSort
+

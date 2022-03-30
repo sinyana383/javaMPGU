@@ -3,6 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="40728f6c-0314-4f18-9cf5-dd738d98cd6e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task2_Tests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task2_Tests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/126_Sinitskaia_task_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/126_Sinitskaia_task_3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/src/QuickSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3/src/QuickSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../task_3/task_3.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +43,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../task_3/126_Sinitskaia_task_3" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
