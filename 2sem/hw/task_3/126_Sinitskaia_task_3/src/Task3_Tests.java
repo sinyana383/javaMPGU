@@ -1,6 +1,6 @@
 import org.junit.*;
 
-public class Tests_3 extends Assert {
+public class Task3_Tests extends Assert {
     static class TestComparator implements MyComparator<Integer>
     {
         @Override
