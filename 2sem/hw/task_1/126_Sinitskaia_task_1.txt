@@ -1,19 +1,18 @@
 # Dynamic Array
-DynamicArray.java|15-16|"" -> if (size < 0) \n throw new IllegalArgumentException("Size can not be negative");|DynamicArray_NegativeSize_Exception
 DynamicArray.java|11|size = 1; -> size = 0;|DynamicArray_DefaultSize_NullSizeArray
-DynamicArray.java|23|if(newSize > 0) -> if(newSize < 0)|resize_NegativeSize_Exception
-DynamicArray.java|37|index > size -> index >= size|set_outOfBounds_Exception
-DynamicArray.java|32|index > size -> index >= size|get_outOfBounds_Exception
-DynamicArray.java|29|newSize = size -> size = newSize|resize_lessThenCapacity_paramsChanged
-# DynamicArray.java|25| будет менятся capacity даже если данное newSize меньше, лучше заменить на newSize > capacity(но функция все равно рабочая)
-DynamicArray.java|17|Object[capacity] -> Object[size]|DynamicArray_normalSize_ArrayCreatedAndUsed
-DynamicArray.java|42|index > size -> index >= size|исходя из прошлых get/set_outOfBounds_Exception
-DynamicArray.java|44|capacity < size -> capacity < size + 1|insert_middle_ArrayChanged
-DynamicArray.java|51|data[index] -> data[index]|insert_middle_ArrayChanged
-DynamicArray.java|54|capacity < size -> capacity < size + 1| то же, что и в 44
-DynamicArray.java|58|data[capacity] -> data[size]|pushBack_emptyAndFilledArray_ArrayChanged
-DynamicArray.java|62|size < 0 -> size <= 0|popBack_emptyArray_Exception
-DynamicArray.java|62|index > size -> index >= size| то же, что и в 42
+DynamicArray.java|15|data = new Object[capacity]; -> data = new Object[size];|DynamicArray_normalSize_ArrayCreatedAndUsed
+DynamicArray.java|21|if(newSize > 0) -> if(newSize < 0)|resize_NegativeSize_Exception
+DynamicArray.java|23|if(newSize != capacity) -> if(newSize > capacity)|resize_moreThenCapacity_paramsChanged
+DynamicArray.java|27|newSize = size; -> size = newSize;|resize_moreThenCapacity_paramsChanged
+DynamicArray.java|30|if(index < 0 || index > size) -> if(index < 0 || index >= size)|get_outOfBounds_Exception
+DynamicArray.java|35|if(index < 0 || index > size) -> if(index < 0 || index >= size)|set_outOfBounds_Exception
+DynamicArray.java|40|if(index < 0 || index > size) -> if(index < 0 || index >= size)|insert_outOfBounds_Exception
+DynamicArray.java|42|if(capacity < size) -> if(capacity == size)|insert_middle_ArrayChanged
+DynamicArray.java|49|data[size] = value; -> data[index] = value;|insert_middle_ArrayChanged
+DynamicArray.java|52|if(capacity < size) -> if(capacity == size)|pushBack_emptyAndFilledArray_ArrayChanged
+DynamicArray.java|56|data[capacity] = value; -> data[size] = value;|pushBack_emptyAndFilledArray_ArrayChanged
+DynamicArray.java|60|if(size < 0) -> if(size <= 0)|popBack_emptyArray_Exception
+DynamicArray.java|66|if(index < 0 || index > size) -> if(index < 0 || index >= size)|remove_middleAndEnd_ArrayChanged
 
 # DoubleLinkedList
 DoubleLinkedList.java|8|DummyNode<>() -> DummyNode<T>()|DoubleLinkedList_createEmpty_ListCreated

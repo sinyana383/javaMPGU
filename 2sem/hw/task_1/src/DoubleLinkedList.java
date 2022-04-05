@@ -1,5 +1,3 @@
-package DoubleLinkedList;
-
 public class DoubleLinkedList<T> {
     private DummyNode<T> dummy;
     private int size;

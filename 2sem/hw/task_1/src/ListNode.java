@@ -1,5 +1,3 @@
-package DoubleLinkedList;
-
 public interface ListNode<T> {
     ListNode<T> getNext();
     ListNode<T> getPrev();

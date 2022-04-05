@@ -1,5 +1,3 @@
-import Array.DynamicArray;
-import DoubleLinkedList.*;
 import org.junit.*;
 
 public class Task1_Tests extends Assert {
@@ -106,16 +104,16 @@ public class Task1_Tests extends Assert {
         list.remove(list.getHead());
     }
 
-    @Test
-    public void DynamicArray_NegativeSize_Exception()
-    {
-        var exception = assertThrows
-                (NegativeArraySizeException.class, () ->
-                {
-                    DynamicArray<Integer> arr = new DynamicArray<>(-1);
-                });
-        assertTrue(exception.toString().contains("Size can not be negative"));
-    }
+//    @Test
+//    public void DynamicArray_NegativeSize_Exception()
+//    {
+//        var exception = assertThrows
+//                (NegativeArraySizeException.class, () ->
+//                {
+//                    DynamicArray<Integer> arr = new DynamicArray<>(-1);
+//                });
+//        assertTrue(exception.toString().contains("Size can not be negative"));
+//    }
 
     @Test
     public void DynamicArray_normalSize_ArrayCreatedAndUsed()
@@ -185,6 +183,17 @@ public class Task1_Tests extends Assert {
     }
 
     @Test
+    public void insert_outOfBounds_Exception()
+    {
+        DynamicArray<Integer> arr = new DynamicArray<>(10);
+        var exception = assertThrows
+                (IndexOutOfBoundsException.class, () -> arr.insert(-1, 2));
+        assertTrue(exception.toString().contains("Index out of bounds"));
+        exception = assertThrows(IndexOutOfBoundsException.class, () -> arr.insert(10, 3));
+        assertTrue(exception.toString().contains("Index out of bounds"));
+    }
+
+    @Test
     public void insert_middle_ArrayChanged()
     {
         DynamicArray<Integer> arr = new DynamicArray<>(5);
@@ -225,19 +234,6 @@ public class Task1_Tests extends Assert {
         var exception = assertThrows
                 (UnsupportedOperationException.class, () -> arr.popBack());
         assertTrue(exception.toString().contains("Array is empty"));
-    }
-
-    @Test
-    public void popBack_normal_ArrayChanged()
-    {
-        DynamicArray<Integer> arr = new DynamicArray<>(5);
-        arr.set(0,1);
-        arr.set(1,1);
-        arr.set(2,1);
-        arr.set(3,1);
-        arr.set(4,1);
-        arr.popBack();
-        assertEquals(4,arr.getSize());
     }
 
     @Test
