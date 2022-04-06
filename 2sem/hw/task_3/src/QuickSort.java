@@ -9,9 +9,9 @@ public class QuickSort<T> implements Sort<T> {
     private void qSortRec(T[] data, int b, int e) {
         if(b >= e)
             return;
-        int base = split(data, b, e);
-        qSortRec(data, b, base - 1);
-        qSortRec(data, base + 1, e);
+        int base = split(data, b, e); //
+        qSortRec(data, b, base - 1); //
+        qSortRec(data, base + 1, e); //
     }
 
     private int split(T[] data, int b, int e) {
@@ -21,12 +21,12 @@ public class QuickSort<T> implements Sort<T> {
         while (left < right) {
             while (left <= right && comparator.compare(data[left], data[baseElem]) <= 0)
                 left++;
-            swap(data, left - 1, baseElem);
-            baseElem = left - 1;
+            swap(data, left - 1, baseElem); //
+            baseElem = left - 1; //
             while (right > left && comparator.compare(data[right], data[baseElem]) > 0)
                 right--;
-            if (left < data.length && right < data.length)
-                swap(data, left , right);
+            if (left < data.length && right < data.length) //
+                swap(data, left , right); //
         }
         return baseElem;
     }
