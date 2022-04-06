@@ -13,13 +13,3 @@ DynamicArray.java|52|if(capacity < size) -> if(capacity == size)|pushBack_emptyA
 DynamicArray.java|56|data[capacity] = value; -> data[size] = value;|pushBack_emptyAndFilledArray_ArrayChanged
 DynamicArray.java|60|if(size < 0) -> if(size <= 0)|popBack_emptyArray_Exception
 DynamicArray.java|66|if(index < 0 || index > size) -> if(index < 0 || index >= size)|remove_middleAndEnd_ArrayChanged
-
-# DoubleLinkedList
-DoubleLinkedList.java|8|DummyNode<>() -> DummyNode<T>()|DoubleLinkedList_createEmpty_ListCreated
-DoubleLinkedList.java|35|--size -> ++size|insertAfter_EmptyList_ListChanged
-DoubleLinkedList.java|19|dummy.getPrev() -> dummy.getNext()|insertAfter_addNewNode_ListChanged
-DoubleLinkedList.java|22|dummy.getNext() -> dummy.getPrev()|insertAfter_addNewNode_ListChanged
-Node.java|15|this.next = prev -> this.next = next|insertAfter_addNewNode_ListChanged
-Node.java|15|this.prev = next -> this.prev = prev|insertAfter_addNewNode_ListChanged
-DoubleLinkedList.java|30|cur.getPrev() -> cur.getNext()|get_simpleCheckAndBounds_correctReturn
-DoubleLinkedList.java|26|index > size -> index >= size|get_simpleCheckAndBounds_correctReturn
