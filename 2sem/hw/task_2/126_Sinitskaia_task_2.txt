@@ -1,9 +1,0 @@
-BubbleSort.java|5|i = 0 -> i = 1|BubbleSort_RandomParams_SuccessSort
-BubbleSort.java|6|data[i]) < 0 -> data[i]) > 0|BubbleSort_RandomParams_SuccessSort
-BubbleSort.java|4|sps = 1 -> sps = 0|BubbleSort_ReverseOrder_SuccessSort
-SelectionSort.java|4|sortedSize = 1 -> sortedSize = 0|SelectionSort_TwoElements_SuccessSort
-SelectionSort.java|10,11|data.length - sortedSize -> data.length - 1 - sortedSize|SelectionSort_TwoElements_SuccessSort
-SelectionSort.java|6|i = 1 -> i = 0|SelectionSort_TwoElements_SuccessSort
-SelectionSort.java|8|maxInd = sortedSize -> maxInd = i|SelectionSort_RandomOrder_SuccessSort
-InsertionSort.java|8|++cur -> --cur|InsertionSort_RandomOrder_SuccessSort
-InsertionSort.java|6|comparator.compare(data[cur - 1], data[cur]) <= 0 -> comparator.compare(data[cur - 1], data[cur]) > 0|InsertionSort_RandomOrder_SuccessSort

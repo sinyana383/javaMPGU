@@ -5,7 +5,7 @@ public class InsertionSort<T> implements Sort<T> {
             int cur = sortedSize;
             while (cur > 0 && comparator.compare(data[cur - 1], data[cur]) > 0){
                 swap(data, cur);
-                --cur;
+                --cur; //
             }
         }
     }
