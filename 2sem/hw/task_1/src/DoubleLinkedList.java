@@ -3,34 +3,34 @@ public class DoubleLinkedList<T> {
     private int size;
 
     public DoubleLinkedList() {
-        dummy = new DummyNode<T>();
+        dummy = new DummyNode<>();
         size = 0;
     }
 
     public boolean isEmpty() {
-        return dummy == dummy;
+        return dummy == dummy.getNext(); //
     }
     public int getSize() {
         return size;
     }
     public ListNode<T> getHead() {
-        return dummy.getNext(); // getNext
+        return dummy.getNext(); //
     }
     public ListNode<T> getTail() {
-        return dummy.getPrev(); // getPrev
+        return dummy.getPrev(); //
     }
 
     public ListNode<T> get(int index) {
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) //
             throw new IndexOutOfBoundsException("index out of bounds");
         ListNode<T> cur = getHead();
         for(int i = 0; i < index; ++i)
-            cur = cur.getNext();
+            cur = cur.getNext(); //
         return (Node<T>) cur;
     }
 
     public Node<T> insertAfter(ListNode<T> node, T data) {
-        ++size;
+        ++size; //
         return new Node<T>(data, node.getNext(), node);
     }
     public Node<T> insertBefore(ListNode<T> node, T data) {
@@ -38,22 +38,22 @@ public class DoubleLinkedList<T> {
         return new Node<T>(data, node, node.getPrev());
     }
     public Node<T> pushFront(T data) {
-        return insertBefore(getTail(), data);
+        return insertBefore(getTail(), data); //getHead
     }
     public Node<T> pushBack(T data) {
-        return insertAfter(getHead(), data);
+        return insertAfter(getHead(), data); // getTail
     }
     public void remove(ListNode<T> node) {
-        node.getPrev().setPrev(node.getNext());
-        node.getNext().setNext(node.getPrev());
+        node.getPrev().setPrev(node.getNext()); //setNext
+        node.getNext().setNext(node.getPrev());// setPrev
         size = Math.max(0, size - 1);
     }
 
     public void insertListAfter(ListNode<T> node, DoubleLinkedList<T> list) {
         if(list.isEmpty())
             return;
-        list.getHead().setNext(node);
-        list.getTail().setPrev(node.getNext());
+        list.getHead().setNext(node); //setPrev
+        list.getTail().setPrev(node.getNext()); //setNext
         node.getNext().setPrev(list.getTail());
         node.setNext(list.getHead());
 
@@ -63,8 +63,8 @@ public class DoubleLinkedList<T> {
     public void insertListBefore(ListNode<T> node, DoubleLinkedList<T> list) {
         if(list.isEmpty())
             return;
-        list.getHead().setNext(node.getPrev());
-        list.getTail().setPrev(node);
+        list.getHead().setNext(node.getPrev()); //setPrev
+        list.getTail().setPrev(node); //setNext
         node.getPrev().setNext(list.getHead());
         node.setPrev(list.getTail());
 

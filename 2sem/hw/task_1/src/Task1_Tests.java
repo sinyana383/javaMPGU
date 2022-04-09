@@ -3,10 +3,12 @@ import org.junit.*;
 public class Task1_Tests extends Assert {
 
     @Test
-    public void DoubleLinkedList_createEmpty_ListCreated()
+    public void isEmpty_checkEmptyList_CorrectOutput()
     {
         DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
         assertTrue(list.isEmpty());
+        list.pushBack(20);
+        assertFalse(list.isEmpty());
     }
 
     @Test
@@ -103,17 +105,6 @@ public class Task1_Tests extends Assert {
         list.remove(list.getHead());
         list.remove(list.getHead());
     }
-
-//    @Test
-//    public void DynamicArray_NegativeSize_Exception()
-//    {
-//        var exception = assertThrows
-//                (NegativeArraySizeException.class, () ->
-//                {
-//                    DynamicArray<Integer> arr = new DynamicArray<>(-1);
-//                });
-//        assertTrue(exception.toString().contains("Size can not be negative"));
-//    }
 
     @Test
     public void DynamicArray_normalSize_ArrayCreatedAndUsed()
