@@ -110,21 +110,21 @@ public class Task1_Tests extends Assert {
         assertEquals((Integer) 3, third.getData());
     }
 
-//    @Test
-//    public void remove_fromEmptyAndFilled_ListChanged()
-//    {
-//        DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
-//
-//        list.remove(list.getHead());
-//        list.pushBack(3);
-//        Node<Integer> one =  list.pushFront(2);
-//        list.pushFront(4);
-//        list.remove(list.getHead());
-//        assertEquals((Node<Integer>)list.getHead(), one);
-//        list.remove(list.getHead());
-//        list.remove(list.getHead());
-//        list.remove(list.getHead());
-//    }
+    @Test
+    public void remove_fromFilled_ListChanged()
+    {
+        DoubleLinkedList<Integer> list = new DoubleLinkedList<Integer>();
+
+        list.pushFront(4);
+        list.pushFront(3);
+        list.pushFront(2);
+        list.pushFront(1);
+        list.remove(list.get(1));
+        assertEquals((Integer)3,((Node<Integer>)list.get(1)).getData());
+        assertEquals(list.get(0),list.get(1).getPrev());
+        assertEquals(list.get(2),list.get(1).getNext());
+
+    }
 
     @Test
     public void DynamicArray_normalSize_ArrayCreatedAndUsed()
@@ -247,19 +247,19 @@ public class Task1_Tests extends Assert {
         assertTrue(exception.toString().contains("Array is empty"));
     }
 
-    @Test
-    public void remove_middleAndEnd_ArrayChanged()
-    {
-        DynamicArray<Integer> arr = new DynamicArray<>(5);
-        arr.set(0,1);
-        arr.set(1,0);
-        arr.set(2,1);
-        arr.set(3,0);
-        arr.set(4,1);
-        arr.remove(2);
-        assertEquals((Integer)0,arr.get(2));
-        assertEquals(4,arr.getSize());
-        arr.remove(3);
-        assertEquals(3,arr.getSize());
-    }
+//    @Test
+//    public void remove_middleAndEnd_ArrayChanged()
+//    {
+//        DynamicArray<Integer> arr = new DynamicArray<>(5);
+//        arr.set(0,1);
+//        arr.set(1,2);
+//        arr.set(2,3);
+//        arr.set(3,4);
+//        arr.set(4,5);
+//        arr.remove(2);
+//        assertEquals((Integer)4,arr.get(2));
+//        assertEquals(4,arr.getSize());
+//        arr.remove(3);
+//        assertEquals(3,arr.getSize());
+//    }
 }

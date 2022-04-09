@@ -27,5 +27,5 @@ DoubleLinkedList.java|24|if(index < 0 || index > size) -> if(index < 0 || index 
 DoubleLinkedList.java|11|return dummy == dummy; -> return dummy == dummy.getNext();|isEmpty_checkEmptyList_CorrectOutput
 DoubleLinkedList.java|41|return insertBefore(getTail(), data); -> return insertBefore(getHead(), data);|pushFront_pushFrontToList_FirstElementPushed
 DoubleLinkedList.java|44|return insertAfter(getHead(), data); -> return insertAfter(getTail(), data);|pushBack_pushBackToList_LastElementPushed
-
-
+DoubleLinkedList.java|47|node.getPrev().setPrev(node.getNext()); -> node.getPrev().setNext(node.getNext());|remove_fromFilled_ListChanged
+DoubleLinkedList.java|48|node.getNext().setNext(node.getPrev()); -> node.getNext().setPrev(node.getPrev());|remove_fromFilled_ListChanged
