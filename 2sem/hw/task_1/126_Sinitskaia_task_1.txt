@@ -25,3 +25,7 @@ DoubleLinkedList.java|20|return dummy.getNext(); -> return dummy.getPrev();|inse
 DoubleLinkedList.java|28|cur = cur.getPrev(); -> cur = cur.getNext();|get_simpleCheckAndBounds_correctReturn
 DoubleLinkedList.java|24|if(index < 0 || index > size) -> if(index < 0 || index >= size)|get_simpleCheckAndBounds_correctReturn
 DoubleLinkedList.java|11|return dummy == dummy; -> return dummy == dummy.getNext();|isEmpty_checkEmptyList_CorrectOutput
+DoubleLinkedList.java|41|return insertBefore(getTail(), data); -> return insertBefore(getHead(), data);|pushFront_pushFrontToList_FirstElementPushed
+DoubleLinkedList.java|44|return insertAfter(getHead(), data); -> return insertAfter(getTail(), data);|pushBack_pushBackToList_LastElementPushed
+
+
