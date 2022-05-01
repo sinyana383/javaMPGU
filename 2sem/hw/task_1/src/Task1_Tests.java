@@ -247,19 +247,18 @@ public class Task1_Tests extends Assert {
         assertTrue(exception.toString().contains("Array is empty"));
     }
 
-//    @Test
-//    public void remove_middleAndEnd_ArrayChanged()
-//    {
-//        DynamicArray<Integer> arr = new DynamicArray<>(5);
-//        arr.set(0,1);
-//        arr.set(1,2);
-//        arr.set(2,3);
-//        arr.set(3,4);
-//        arr.set(4,5);
-//        arr.remove(2);
-//        assertEquals((Integer)4,arr.get(2));
-//        assertEquals(4,arr.getSize());
-//        arr.remove(3);
-//        assertEquals(3,arr.getSize());
-//    }
+    @Test
+    public void insertListAfter_mergeLists_NewBigList()
+    {
+        DynamicArray<Integer> arr = new DynamicArray<>(5);
+        arr.set(0,1);
+        arr.set(1,1);
+        arr.set(2,1);
+        arr.pushBack(0);
+
+        DynamicArray<Integer> arr2 = new DynamicArray<>(5);
+        arr.set(0,3);
+        arr.set(1,4);
+        arr.set(2,5);
+    }
 }
