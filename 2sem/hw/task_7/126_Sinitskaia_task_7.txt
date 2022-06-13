@@ -1,0 +1,65 @@
+Offset_hash_1
+x x x x 43 x x x x x x x x
+x 1 x x 43 x x x x x x x x
+x 1 x 42 43 x x x x x x x x
+65 1 x 42 43 x x x x x x x x
+65 1 x 42 43 x x 20 x x x x x
+65 1 x 42 43 x x 20 46 x x x x
+65 1 x 42 43 x x 20 46 8 x x x
+65 1 x 42 43 x x 20 46 8 x 63 x
+65 1 x 42 43 31 x 20 46 8 x 63 x
+65 1 x 42 43 31 x 20 46 8 x 63 12
+65 1 x 42 43 31 x 20 46 8 x 63 12
+65 1 x 42 43 31 x 20 46 8 61 63 12
+
+Offset_hash_2
+x x x x x 81 x x x x x x x x x x x x x
+x x x x x 81 x x x x x x x x x x x x 75
+x x x x x 81 x x x x x x x x 33 x x x 75
+x x x x x 81 x x x x x 11 x x 33 x x x 75
+x x x x x 81 x x 8 x x 11 x x 33 x x x 75
+x x x x x 81 x x 8 x x 11 88 x 33 x x x 75
+x x x x 23 81 x x 8 x x 11 88 x 33 x x x 75
+x x x x 23 81 x x 8 x x 11 88 30 33 x x x 75
+x x x x 23 81 43 x 8 x x 11 88 30 33 x x x 75
+x x x x 23 81 43 44 8 x x 11 88 30 33 x x x 75
+x x x x 23 81 43 44 8 5 x 11 88 30 33 x x x 75
+x x x x 23 81 43 44 8 5 x 11 88 30 33 x x x 75
+x 96 x x 23 81 43 44 8 5 x 11 88 30 33 x x x 75
+x 96 x x 23 81 43 44 8 5 99 11 88 30 33 x x x 75
+x 96 x x 23 81 43 44 8 5 99 11 88 30 33 x x x 75
+x 96 x x 23 81 43 44 8 5 99 11 30 x 33 x x x 75
+x 96 x x 23 81 43 44 8 5 99 11 x x 33 x x x 75
+x 96 x x 99 81 43 44 8 5 x 11 x x 33 x x x 75
+x 96 x x 99 81 43 44 8 5 x 11 x x x x x x 75
+x 96 x x 99 81 43 44 8 5 x 11 x x x x x x x
+
+Offset_hash_3
+x 77 x x x x x x x x x x x x x x x x x
+x 77 x x x x x x x x x x x x x x x x 94
+x 77 59 x x x x x x x x x x x x x x x 94
+x 77 59 x x x 44 x x x x x x x x x x x 94
+x 77 59 x x x 44 x x x x x 88 x x x x x 94
+x 77 59 x x x 44 x x x x x 88 x x x x x 94
+x 77 59 x x x 44 x x x x x 88 x x x 54 x 94
+x 77 59 x x x 44 7 x x x x 88 x x x 54 x 94
+x 77 59 x x x 44 7 x x x x 88 x 14 x 54 x 94
+x 77 59 x x x 44 7 x x x x 88 x 14 71 54 x 94
+x 77 59 1 x x 44 7 x x x x 88 x 14 71 54 x 94
+x 77 59 1 x x 44 7 x x x 30 88 x 14 71 54 x 94
+x 77 59 1 x x 44 7 x x x 30 88 x 71 x 54 x 94
+x 77 59 x x x 44 7 x x x 30 88 x 71 x 54 x 94
+x 77 x x x x 44 7 x x x 30 88 x 71 x 54 x 94
+x 77 x x x 43 44 7 x x x 30 88 x 71 x 54 x 94
+x 77 x x x 43 44 7 x x x 30 88 68 71 x 54 x 94
+x 77 x x x 43 44 7 x x x 30 88 68 71 x 54 x 94
+x 77 x x x 43 44 7 x x x 30 88 68 71 x x x 94
+x 77 x x x 43 44 7 x x x 30 88 68 x x x x 94
+x 77 x x x 43 44 7 x x x 30 88 68 x 72 x x 94
+x 77 x 79 x 43 44 7 x x x 30 88 68 x 72 x x 94
+x 77 x 79 x 43 44 7 x x x 30 88 68 89 72 x x 94
+x 77 x 79 x 43 x 7 x x x 30 88 68 89 72 x x 94
+x x x 79 x 43 x 7 x x x 30 88 68 89 72 x x 94
+x x x 79 x 43 x 7 x x x 30 68 89 x 72 x x 94
+x x x 79 x 43 x x x x x 30 68 89 x 72 x x 94
+x x x 79 x 43 x x x x x 30 x 89 x 72 x x 94
