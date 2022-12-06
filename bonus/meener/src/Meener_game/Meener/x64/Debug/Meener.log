@@ -1,4 +1,0 @@
-﻿  Meener.cpp
-C:\С рабочего стола\126_sinitskaya_yana\bonus\meener\src\Meener_game\Meener\Meener.cpp(21,13): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\С рабочего стола\126_sinitskaya_yana\bonus\meener\src\Meener_game\Meener\Meener.cpp(204,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-  Meener.vcxproj -> C:\С рабочего стола\126_sinitskaya_yana\bonus\meener\src\Meener_game\x64\Debug\Meener.exe
